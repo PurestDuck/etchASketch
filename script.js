@@ -1,5 +1,9 @@
 const container = document.querySelector('#container');
+const clearBtn = document.querySelector('#clear');
 const INITIAL_GRID = 16;
+
+clearBtn.addEventListener('click', clearTiles);
+
 function makeTiles(rowNum, columnNum) {
     for (let r = 0; r < rowNum; r++) {
         const row = document.createElement('div');
@@ -22,9 +26,10 @@ function setupTiles(){
 function drawOnTile(e){
     e.target.style.background= "black";
 }
+function clearTiles(){
+    const allTiles = document.querySelectorAll('.colorTile');
+    allTiles.forEach( (tile)=>{
+        tile.style.background = "white";
+    })
+}
 setupTiles();
-
-
-
-
-

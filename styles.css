@@ -5,8 +5,13 @@ html{
     box-sizing:inherit;
 }
 body{
+    margin:0;
+    padding:0;
     background-color: bisque;
+    display: flex;
+    flex-flow: column nowrap;
 }
+
 #container{
     width: 1000px;
     height: 1000px;
@@ -17,8 +22,8 @@ body{
 .colorTile{
     background-color: white;
     border: 1px black solid;
-    width:25px;
-    height:25px;
+    width:20px;
+    height:20px;
     flex: 0 1 auto;
     margin: 0px;
     padding: 0px;
