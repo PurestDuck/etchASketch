@@ -1,6 +1,8 @@
 const container = document.querySelector('#container');
 const clearBtn = document.querySelector('#clear');
 const INITIAL_GRID = 16;
+const MAX_AMOUNT = 40;
+const MIN_AMOUNT = 1;
 
 clearBtn.addEventListener('click', clearTiles);
 
@@ -43,7 +45,10 @@ function removeTiles(){
 
 function clearTiles() {
     removeTiles();
-    const rowAndCol = parseInt(prompt("Enter grid desired"));
+    let rowAndCol = parseInt(prompt("Enter grid desired"));
+    while(!(rowAndCol >= MIN_AMOUNT && rowAndCol <= MAX_AMOUNT)){
+        rowAndCol = parseInt(prompt(`Min has to be ${MIN_AMOUNT}, max ${MAX_AMOUNT}`));
+    }
     setupTiles(rowAndCol, rowAndCol);
 }
 
