@@ -11,20 +11,24 @@ body{
     display: flex;
     flex-flow: column nowrap;
 }
-
 #container{
-    width: 1000px;
-    height: 1000px;
+    width: 500px;
+    height: 500px;
     display:flex;
-    flex-flow: row wrap;
-    align-content: flex-start
+    flex-flow: row nowrap;
+    /* align-content: flex-start; */
+}
+.row{
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    
 }
 .colorTile{
+    flex: 1 1 auto;
     background-color: white;
     border: 1px black solid;
-    width:20px;
     height:20px;
-    flex: 0 1 auto;
     margin: 0px;
     padding: 0px;
 }
