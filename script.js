@@ -3,12 +3,14 @@ const clearBtn = document.querySelector('#clear');
 const rainbowBtn = document.querySelector('#rainbow');
 const blackBtn = document.querySelector('#black');
 const eraserBtn = document.querySelector('#erase');
+const createGridBtn = document.querySelector('#newGrid');
 const INITIAL_GRID = 16;
 const MAX_AMOUNT = 40;
 const MIN_AMOUNT = 1;
 let isDrawing = false;
 let penType = "black";
 
+createGridBtn.addEventListener('click',createGrid);
 eraserBtn.addEventListener('click',changePenEraser);
 rainbowBtn.addEventListener('click', changePenRaibow);
 blackBtn.addEventListener('click', changePenBlack);
@@ -65,7 +67,14 @@ function drawOnTile(e) {
     }
     }
 }
-
+function createGrid(){
+    removeTiles();
+    let rowAndCol = parseInt(prompt("Enter grid desired"));
+    while(!(rowAndCol >= MIN_AMOUNT && rowAndCol <= MAX_AMOUNT)){
+        rowAndCol = parseInt(prompt(`Min has to be ${MIN_AMOUNT}, max ${MAX_AMOUNT}`));
+    }
+    setupTiles(rowAndCol, rowAndCol);
+}
 function mouseDown(){
     isDrawing = true;
 }
@@ -110,12 +119,10 @@ function removeTiles(){
 }
 
 function clearTiles() {
-    removeTiles();
-    let rowAndCol = parseInt(prompt("Enter grid desired"));
-    while(!(rowAndCol >= MIN_AMOUNT && rowAndCol <= MAX_AMOUNT)){
-        rowAndCol = parseInt(prompt(`Min has to be ${MIN_AMOUNT}, max ${MAX_AMOUNT}`));
-    }
-    setupTiles(rowAndCol, rowAndCol);
+    const allTiles = document.querySelectorAll('.colorTile');
+    allTiles.forEach((tile) => {
+        tile.style.background = "white";
+    })
 }
 
 setupTiles(INITIAL_GRID, INITIAL_GRID);

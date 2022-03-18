@@ -43,6 +43,7 @@ body{
     height:20px;
     margin: 0px;
     padding: 0px;
+    
 }
 .center{
     display:flex;
@@ -55,5 +56,6 @@ body{
 button{
     border-radius: 5px;
     background-color: white;
-    
+    height: 6vh;
+    width: 4vw;
 }
