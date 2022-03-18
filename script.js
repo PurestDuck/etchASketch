@@ -6,6 +6,7 @@ const eraserBtn = document.querySelector('#erase');
 const INITIAL_GRID = 16;
 const MAX_AMOUNT = 40;
 const MIN_AMOUNT = 1;
+let isDrawing = false;
 let penType = "black";
 
 eraserBtn.addEventListener('click',changePenEraser);
@@ -50,6 +51,7 @@ function createRandomRGB(){
     return `rgb(${red}, ${blue}, ${green})` ;
 }
 function drawOnTile(e) {
+    if(isDrawing) {
     switch(penType){
         case("rainbow"):
             drawRainbow(e);
@@ -61,6 +63,14 @@ function drawOnTile(e) {
             e.target.style.background = `white`;
             break;
     }
+    }
+}
+
+function mouseDown(){
+    isDrawing = true;
+}
+function mouseUp(){
+    isDrawing = false;
 }
 
 function makeTiles(rowNum, columnNum) {
@@ -80,6 +90,8 @@ function setupTiles(row, col) {
     makeTiles(row, col);
     const allTiles = document.querySelectorAll('.colorTile');
     allTiles.forEach((tile) => {
+        tile.addEventListener('mousedown', mouseDown);
+        tile.addEventListener('mouseup', mouseUp);
         tile.addEventListener('mousemove', drawOnTile);
     })
 
