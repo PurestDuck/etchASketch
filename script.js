@@ -5,22 +5,53 @@ const blackBtn = document.querySelector('#black');
 const INITIAL_GRID = 16;
 const MAX_AMOUNT = 40;
 const MIN_AMOUNT = 1;
-let red = 0, blue = 0, green = 0;
+let isRainbowPen = false;
+
 
 rainbowBtn.addEventListener('click', changePenRaibow);
 blackBtn.addEventListener('click', changePenBlack);
 clearBtn.addEventListener('click', clearTiles);
 
 function changePenRaibow(){
-    red=10;
-    green+=5;
-    blue+=40;
+    isRainbowPen = true;
 }
 
 function changePenBlack(){
-    red=0;
-    green=0;
-    blue=0;
+    isRainbowPen = false;
+}
+function checkIfBlack(color){
+    if(color < 0) return 0;
+    return color;
+}
+function drawRainbow(e){
+    if(!e.target.style.background){
+        e.target.style.background = createRandomRGB();
+    }else{
+        let currentColor = e.target.style.background;
+        currentColor = currentColor.substring(4, currentColor.length-1)
+         .replace(/ /g, '')
+         .split(',');
+        let newRed = parseInt(currentColor[0]) - 10;
+        let newGreen = parseInt(currentColor[1])- 10;
+        let newBlue = parseInt(currentColor[2]) - 10;
+        newRed = checkIfBlack(newRed);
+        newGreen = checkIfBlack(newGreen);
+        newBlue = checkIfBlack(newBlue);
+        e.target.style.background = `rgb(${newRed}, ${newGreen}, ${newBlue})`;
+    }
+}
+function createRandomRGB(){
+    const red = Math.floor(Math.random() * 255);
+    const blue = Math.floor(Math.random() * 255);
+    const green = Math.floor(Math.random() * 255);
+    return `rgb(${red}, ${blue}, ${green})` ;
+}
+function drawOnTile(e) {
+    if(isRainbowPen){
+        drawRainbow(e);
+    } else{
+        e.target.style.background = `black`;
+    }
 }
 
 function makeTiles(rowNum, columnNum) {
@@ -45,9 +76,6 @@ function setupTiles(row, col) {
 
 }
 
-function drawOnTile(e) {
-    e.target.style.background = `rgb(${red}, ${green}, ${blue})`;
-}
 function removeTiles(){
     const rows = document.querySelectorAll('.row');
     const childTiles = document.querySelectorAll('.colorTile');
