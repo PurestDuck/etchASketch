@@ -4,19 +4,31 @@ html{
 *,*::before, *::after{
     box-sizing:inherit;
 }
+html, body{
+    height:100%;
+    width:100%;
+}
+.header{
+    font-weight: bold;
+    font-size: 44px;
+}
 body{
     margin:0;
     padding:0;
-    background-color: bisque;
+    font-family: 'Merriweather', serif;
+    background-color: bisque; 
     display: flex;
     flex-flow: column nowrap;
+    align-content: center;
+    justify-content:center;
 }
 #container{
     width: 500px;
     height: 500px;
     display:flex;
     flex-flow: row nowrap;
-    /* align-content: flex-start; */
+    border: solid red 5px;
+
 }
 .row{
     flex: 1 1 auto;
@@ -31,4 +43,17 @@ body{
     height:20px;
     margin: 0px;
     padding: 0px;
+}
+.center{
+    display:flex;
+    justify-content: center;
+}
+#buttonSpace{
+    margin-bottom: 3vh;
+    gap: 1vw;
+}
+button{
+    border-radius: 5px;
+    background-color: white;
+    
 }

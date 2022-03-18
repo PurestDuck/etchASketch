@@ -2,29 +2,32 @@ const container = document.querySelector('#container');
 const clearBtn = document.querySelector('#clear');
 const rainbowBtn = document.querySelector('#rainbow');
 const blackBtn = document.querySelector('#black');
+const eraserBtn = document.querySelector('#erase');
 const INITIAL_GRID = 16;
 const MAX_AMOUNT = 40;
 const MIN_AMOUNT = 1;
-let isRainbowPen = false;
+let penType = "black";
 
-
+eraserBtn.addEventListener('click',changePenEraser);
 rainbowBtn.addEventListener('click', changePenRaibow);
 blackBtn.addEventListener('click', changePenBlack);
 clearBtn.addEventListener('click', clearTiles);
 
 function changePenRaibow(){
-    isRainbowPen = true;
+    penType = "rainbow";
 }
-
+function changePenEraser(){
+    penType = "eraser"
+}
 function changePenBlack(){
-    isRainbowPen = false;
+    penType = "black";
 }
 function checkIfBlack(color){
     if(color < 0) return 0;
     return color;
 }
 function drawRainbow(e){
-    if(!e.target.style.background){
+    if(!e.target.style.background || e.target.style.background =="white" ){
         e.target.style.background = createRandomRGB();
     }else{
         let currentColor = e.target.style.background;
@@ -47,10 +50,16 @@ function createRandomRGB(){
     return `rgb(${red}, ${blue}, ${green})` ;
 }
 function drawOnTile(e) {
-    if(isRainbowPen){
-        drawRainbow(e);
-    } else{
-        e.target.style.background = `black`;
+    switch(penType){
+        case("rainbow"):
+            drawRainbow(e);
+            break;
+        case("black"):
+            e.target.style.background = `black`;
+            break;
+        case("eraser"):
+            e.target.style.background = `white`;
+            break;
     }
 }
 
@@ -71,7 +80,7 @@ function setupTiles(row, col) {
     makeTiles(row, col);
     const allTiles = document.querySelectorAll('.colorTile');
     allTiles.forEach((tile) => {
-        tile.addEventListener('mouseover', drawOnTile);
+        tile.addEventListener('mousemove', drawOnTile);
     })
 
 }
