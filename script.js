@@ -4,16 +4,16 @@ const rainbowBtn = document.querySelector('#rainbow');
 const blackBtn = document.querySelector('#black');
 const eraserBtn = document.querySelector('#erase');
 const createGridBtn = document.querySelector('#newGrid');
-
+const gitImg = document.querySelector('#github');
 const customBtn = document.querySelector('#custom');
 const customSpan = document.querySelector('#customSpan');
-
 const INITIAL_GRID = 16;
 const MAX_AMOUNT = 40;
 const MIN_AMOUNT = 1;
 let isDrawing = false;
 let penType = "black";
 
+gitImg.addEventListener('click',()=>{location.replace("https://github.com/PurestDuck")});
 customSpan.addEventListener('click',()=>{
     customBtn.click();
 });
