@@ -4,6 +4,7 @@ const rainbowBtn = document.querySelector('#rainbow');
 const blackBtn = document.querySelector('#black');
 const eraserBtn = document.querySelector('#erase');
 const createGridBtn = document.querySelector('#newGrid');
+const customBtn = document.querySelector('#custom');
 const INITIAL_GRID = 16;
 const MAX_AMOUNT = 40;
 const MIN_AMOUNT = 1;
@@ -15,6 +16,11 @@ eraserBtn.addEventListener('click',changePenEraser);
 rainbowBtn.addEventListener('click', changePenRaibow);
 blackBtn.addEventListener('click', changePenBlack);
 clearBtn.addEventListener('click', clearTiles);
+customBtn.addEventListener('input',changePenCustom);
+
+function changePenCustom(e){
+    penType = e.target.value;
+}
 
 function changePenRaibow(){
     penType = "rainbow";
@@ -63,6 +69,9 @@ function drawOnTile(e) {
             break;
         case("eraser"):
             e.target.style.background = `white`;
+            break;
+        default:
+            e.target.style.background = `${penType}`;
             break;
     }
     }

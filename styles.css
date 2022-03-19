@@ -59,3 +59,13 @@ button{
     height: 6vh;
     width: 4vw;
 }
+.column{
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+}
+input{
+    height: 4vh;
+    border-radius: 10px;
+    
+}
