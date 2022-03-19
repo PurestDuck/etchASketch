@@ -4,13 +4,19 @@ const rainbowBtn = document.querySelector('#rainbow');
 const blackBtn = document.querySelector('#black');
 const eraserBtn = document.querySelector('#erase');
 const createGridBtn = document.querySelector('#newGrid');
+
 const customBtn = document.querySelector('#custom');
+const customSpan = document.querySelector('#customSpan');
+
 const INITIAL_GRID = 16;
 const MAX_AMOUNT = 40;
 const MIN_AMOUNT = 1;
 let isDrawing = false;
 let penType = "black";
 
+customSpan.addEventListener('click',()=>{
+    customBtn.click();
+});
 createGridBtn.addEventListener('click',createGrid);
 eraserBtn.addEventListener('click',changePenEraser);
 rainbowBtn.addEventListener('click', changePenRaibow);
@@ -20,6 +26,7 @@ customBtn.addEventListener('input',changePenCustom);
 
 function changePenCustom(e){
     penType = e.target.value;
+    customSpan.style.background = customBtn.value;
 }
 
 function changePenRaibow(){
